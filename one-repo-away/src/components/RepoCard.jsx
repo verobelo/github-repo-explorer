@@ -1,19 +1,46 @@
-import { Button } from "@chakra-ui/react/button";
+import { Button, IconButton } from "@chakra-ui/react/button";
 import { Card } from "@chakra-ui/react/card";
+import { Flex } from "@chakra-ui/react/flex";
+import { Icon } from "@chakra-ui/react/icon";
+import { Text } from "@chakra-ui/react/typography";
+import { GitFork, Star } from "lucide-react";
 
 export default function RepoCard() {
   return (
     <Card.Root as={"li"} maxW={"300px"}>
       <Card.Body gap="2">
         <Card.Title mt="2">react-animate</Card.Title>
-        <Card.Description>
+        <Card.Description fontSize={{ base: "sm", md: "md" }}>
           This is the card body. Lorem ipsum dolor sit amet, consectetur
           adipiscing elit. Curabitur nec odio vel dui euismod fermentum.
           Curabitur nec odio vel dui euismod fermentum.
         </Card.Description>
       </Card.Body>
-      <Card.Footer justifyContent="flex-end">
-        <Button type="button" colorPalette={"blue"} size={"sm"}>
+      <Card.Footer justifyContent="space-between" fontWeight={"light"}>
+        <Text fontSize={"sm"} color={"gray.600"}>
+          JS
+        </Text>
+        <Flex align={"center"} gap={"1"}>
+          <Icon size={"sm"} verticalAlign={"middle"} color={"gray.600"}>
+            <GitFork />
+          </Icon>
+          <Text fontSize={"sm"} color={"gray.600"}>
+            500
+          </Text>
+        </Flex>
+        <Flex align={"center"} gap={"1"}>
+          <Icon size={"sm"} verticalAlign={"middle"} color={"gray.600"}>
+            <Star />
+          </Icon>
+          <Text fontSize={"sm"} color={"gray.600"}>
+            600
+          </Text>
+        </Flex>
+        <Button
+          type="button"
+          colorPalette={"blue"}
+          size={{ base: "sm", md: "md" }}
+          fontSize={{ base: "sm", md: "md" }}>
           View
           <svg
             role="img"

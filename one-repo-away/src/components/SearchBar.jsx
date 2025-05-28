@@ -12,24 +12,32 @@ export default function Searchbar() {
   return (
     <Flex direction={"column"} gap={"2"}>
       <Group attached w={"full"}>
-        <Input type="text" placeholder="Search repositories..." size={"sm"} />
+        <Input
+          type="text"
+          placeholder="Search repositories..."
+          _placeholder={{ fontSize: { base: "sm", md: "md" } }}
+          size={{ base: "sm", md: "md" }}
+        />
         <IconButton
           colorPalette={"blue"}
-          size={"sm"}
+          size={{ base: "sm", md: "md" }}
           aria-label="Search repositories">
           <Search />
         </IconButton>
       </Group>
 
-      <Flex direction={{ base: "column" }} gap={"2"}>
+      <Flex direction={{ base: "column", md: "row" }} gap={"2"}>
         <Select.Root
           collection={languages}
-          size="sm"
+          size={{ base: "sm", md: "md" }}
           aria-label="Select a language">
           <Select.HiddenSelect />
           <Select.Control>
             <Select.Trigger>
-              <Select.ValueText placeholder="Select language" />
+              <Select.ValueText
+                placeholder="Select language"
+                fontSize={{ base: "sm", md: "md" }}
+              />
             </Select.Trigger>
             <Select.IndicatorGroup>
               <Select.Indicator />
@@ -49,11 +57,16 @@ export default function Searchbar() {
           </Portal>
         </Select.Root>
 
-        <Select.Root size="sm" aria-label="Select a filter">
+        <Select.Root
+          size={{ base: "sm", md: "md" }}
+          aria-label="Select a filter">
           <Select.HiddenSelect />
           <Select.Control>
             <Select.Trigger>
-              <Select.ValueText placeholder="Filter by" />
+              <Select.ValueText
+                placeholder="Filter by"
+                fontSize={{ base: "sm", md: "md" }}
+              />
             </Select.Trigger>
             <Select.IndicatorGroup>
               <Select.Indicator />
@@ -70,7 +83,11 @@ export default function Searchbar() {
           </Portal>
         </Select.Root>
 
-        <Button colorPalette={"green"} alignSelf={"center"}>
+        <Button
+          colorPalette={"green"}
+          alignSelf={"center"}
+          size={{ base: "sm", md: "md" }}
+          fontSize={{ base: "sm", md: "md" }}>
           Find a Random Repo
         </Button>
       </Flex>

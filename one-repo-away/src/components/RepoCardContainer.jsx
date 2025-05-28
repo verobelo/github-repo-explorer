@@ -11,7 +11,7 @@ export default function RepoCardContainer() {
     <>
       <Grid
         as={"ul"}
-        gridTemplateColumns={"1fr"}
+        gridTemplateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }}
         justifyItems={"center"}
         gap={"2"}>
         <GridItem>
@@ -36,21 +36,27 @@ export default function RepoCardContainer() {
           aria-label="pagination">
           <ButtonGroup variant="ghost" size="xs">
             <Pagination.PrevTrigger asChild>
-              <IconButton aria-label="Go to previous">
+              <IconButton
+                aria-label="Go to previous"
+                size={{ base: "sm", md: "md" }}>
                 <ChevronLeft />
               </IconButton>
             </Pagination.PrevTrigger>
 
             <Pagination.Items
               render={(page) => (
-                <IconButton variant={{ base: "ghost", _selected: "outline" }}>
+                <IconButton
+                  variant={{ base: "ghost", _selected: "outline" }}
+                  fontSize={{ base: "sm", md: "md" }}>
                   {page.value}
                 </IconButton>
               )}
             />
 
             <Pagination.NextTrigger asChild>
-              <IconButton aria-label="Go to next">
+              <IconButton
+                aria-label="Go to next"
+                size={{ base: "sm", md: "md" }}>
                 <ChevronRight />
               </IconButton>
             </Pagination.NextTrigger>
