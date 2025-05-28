@@ -13,13 +13,19 @@ export default function Searchbar() {
     <Flex direction={"column"} gap={"2"}>
       <Group attached w={"full"}>
         <Input type="text" placeholder="Search repositories..." size={"sm"} />
-        <IconButton colorPalette={"blue"} size={"sm"}>
+        <IconButton
+          colorPalette={"blue"}
+          size={"sm"}
+          aria-label="Search repositories">
           <Search />
         </IconButton>
       </Group>
 
       <Flex direction={{ base: "column" }} gap={"2"}>
-        <Select.Root collection={languages} size="sm">
+        <Select.Root
+          collection={languages}
+          size="sm"
+          aria-label="Select a language">
           <Select.HiddenSelect />
           <Select.Control>
             <Select.Trigger>
@@ -43,7 +49,7 @@ export default function Searchbar() {
           </Portal>
         </Select.Root>
 
-        <Select.Root size="sm">
+        <Select.Root size="sm" aria-label="Select a filter">
           <Select.HiddenSelect />
           <Select.Control>
             <Select.Trigger>
