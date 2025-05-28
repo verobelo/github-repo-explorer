@@ -5,20 +5,20 @@ import { Input } from "@chakra-ui/react/input";
 import { Select } from "@chakra-ui/react/select";
 import { Portal } from "@chakra-ui/react/portal";
 import { languages } from "@/logic/languages";
-import { LuSearch } from "react-icons/lu";
 import { Group } from "@chakra-ui/react/group";
+import { Search } from "lucide-react";
 
 export default function Searchbar() {
   return (
-    <Box>
+    <Flex direction={"column"} gap={"2"}>
       <Group attached w={"full"}>
         <Input type="text" placeholder="Search repositories..." size={"sm"} />
         <IconButton colorPalette={"blue"} size={"sm"}>
-          <LuSearch />
+          <Search />
         </IconButton>
       </Group>
 
-      <Flex direction={{ base: "column" }}>
+      <Flex direction={{ base: "column" }} gap={"2"}>
         <Select.Root collection={languages} size="sm">
           <Select.HiddenSelect />
           <Select.Control>
@@ -64,8 +64,10 @@ export default function Searchbar() {
           </Portal>
         </Select.Root>
 
-        <Button colorPalette={"green"}>Find a Random Repo</Button>
+        <Button colorPalette={"green"} alignSelf={"center"}>
+          Find a Random Repo
+        </Button>
       </Flex>
-    </Box>
+    </Flex>
   );
 }
