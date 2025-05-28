@@ -6,7 +6,7 @@ export default function Header() {
   return (
     <header style={{ textAlign: "center" }}>
       <Flex align={"center"} justify={{ base: "space-around" }}>
-        <Heading as={"h1"} textStyle={{ base: "xl" }}>
+        <Heading as={"h1"} textStyle={{ base: "2xl" }}>
           One Repo Away.
         </Heading>
         <ColorModeButton />
