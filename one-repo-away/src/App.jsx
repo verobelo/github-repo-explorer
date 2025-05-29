@@ -8,11 +8,11 @@ import RepoCardContainer from "./components/RepoCardContainer";
 
 function App() {
   return (
-    <Container maxW={"3xl"} p={"0"} minH={"100dvh"}>
-      <VStack p={"4"} gap={"5"} align={{ base: "stretch", md: "center" }}>
+    <Container maxW={{ base: "3xl" }} p={"0"} minH={"100dvh"}>
+      <VStack p={"4"} gap={"6"} align={{ base: "stretch", md: "center" }}>
         <Header />
         <Box as="main">
-          <VStack gap="5" align="stretch">
+          <VStack gap="6" align="stretch" mt={{ base: 2, md: 4 }}>
             <Searchbar />
             <RepoCardContainer />
           </VStack>
