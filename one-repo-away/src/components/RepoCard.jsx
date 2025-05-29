@@ -18,7 +18,12 @@ export default function RepoCard() {
           Curabitur nec odio vel dui euismod fermentum.
         </Card.Description>
       </Card.Body>
-      <Card.Footer justifyContent="space-between" fontWeight={"light"}>
+      <Card.Footer
+        wrap="wrap"
+        justifyContent="space-between"
+        alignItems="center"
+        gap={{ md: 2, xl: 3 }}
+        fontWeight={"light"}>
         <Text fontSize={"sm"} color={{ _light: "gray.600", _dark: "gray.400" }}>
           JS
         </Text>
