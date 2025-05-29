@@ -9,7 +9,7 @@ export default function Header() {
       <Flex align={"center"} justify="center" gap={{ base: 6, md: 8 }}>
         <Heading
           as={"h1"}
-          fontSize={{ base: "2xl", md: "3xl", xl: "4xl" }}
+          fontSize={{ base: "2xl", md: "3xl" }}
           mb={{ xl: "2" }}>
           One Repo Away.
         </Heading>
@@ -18,7 +18,7 @@ export default function Header() {
         </Box>
       </Flex>
       <Text
-        fontSize={{ base: "xs", sm: "sm", md: "md", xl: "xl" }}
+        fontSize={{ base: "xs", sm: "sm", md: "md", xl: "lg" }}
         fontStyle={"italic"}>
         The perfect GitHub repo is just one search away.
       </Text>

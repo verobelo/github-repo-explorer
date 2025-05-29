@@ -16,11 +16,11 @@ export default function Searchbar() {
           type="text"
           placeholder="Search repositories..."
           _placeholder={{ fontSize: { base: "sm", md: "md" } }}
-          size={{ base: "sm", md: "md" }}
+          size={{ base: "sm", md: "md", xl: "xl" }}
         />
         <IconButton
           colorPalette={"blue"}
-          size={{ base: "sm", md: "md" }}
+          size={{ base: "sm", md: "md", xl: "xl" }}
           aria-label="Search repositories">
           <Search />
         </IconButton>
@@ -29,7 +29,7 @@ export default function Searchbar() {
       <Flex direction={{ base: "column", md: "row" }} gap={"2"}>
         <Select.Root
           collection={languages}
-          size={{ base: "sm", md: "md" }}
+          size={{ base: "sm", md: "md", xl: "lg" }}
           aria-label="Select a language">
           <Select.HiddenSelect />
           <Select.Control>
@@ -58,7 +58,7 @@ export default function Searchbar() {
         </Select.Root>
 
         <Select.Root
-          size={{ base: "sm", md: "md" }}
+          size={{ base: "sm", md: "md", xl: "lg" }}
           aria-label="Select a filter">
           <Select.HiddenSelect />
           <Select.Control>
@@ -86,7 +86,7 @@ export default function Searchbar() {
         <Button
           colorPalette={"green"}
           alignSelf={"center"}
-          size={{ base: "sm", md: "md" }}
+          size={{ base: "sm", md: "md", xl: "xl" }}
           fontSize={{ base: "sm", md: "md" }}>
           Find a Random Repo
         </Button>
