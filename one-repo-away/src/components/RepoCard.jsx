@@ -39,19 +39,7 @@ export default function RepoCard({
           color={{ _light: "gray.600", _dark: "gray.400" }}>
           {language}
         </Text>
-        <Flex align={"center"} gap={"1"}>
-          <Icon
-            size={"sm"}
-            verticalAlign={"middle"}
-            color={{ _light: "gray.600", _dark: "gray.400" }}>
-            <GitFork />
-          </Icon>
-          <Text
-            fontSize={"sm"}
-            color={{ _light: "gray.600", _dark: "gray.400" }}>
-            {forks}
-          </Text>
-        </Flex>
+
         <Flex align={"center"} gap={"1"}>
           <Icon
             size={"sm"}
@@ -65,18 +53,20 @@ export default function RepoCard({
             {stars}
           </Text>
         </Flex>
-        {/*<Link
-          href={url}
-          isExternal
-          aria-label="View repository on GitHub"
-          px={"2"}
-          py={"1"}
-          borderRadius={"2xl"}
-          border={"1px solid blue"}
-          colorPalette={"blue"}
-          fontWeight={"bold"}>
-          View
-        </Link>*/}
+
+        <Flex align={"center"} gap={"1"}>
+          <Icon
+            size={"sm"}
+            verticalAlign={"middle"}
+            color={{ _light: "gray.600", _dark: "gray.400" }}>
+            <GitFork />
+          </Icon>
+          <Text
+            fontSize={"sm"}
+            color={{ _light: "gray.600", _dark: "gray.400" }}>
+            {forks}
+          </Text>
+        </Flex>
 
         <IconButton
           as="a"
