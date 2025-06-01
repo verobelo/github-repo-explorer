@@ -7,7 +7,14 @@ import { languages } from "@/logic/languages";
 import { HStack } from "@chakra-ui/react/stack";
 import { Search } from "lucide-react";
 
-export default function Searchbar({ query, setQuery, onSearch, isLoading }) {
+export default function Searchbar({
+  query,
+  setQuery,
+  onSearch,
+  isLoading,
+  selectedLanguage,
+  setSelectedLanguage,
+}) {
   function handleSubmit(e) {
     e.preventDefault();
     onSearch();
@@ -40,7 +47,9 @@ export default function Searchbar({ query, setQuery, onSearch, isLoading }) {
         <Select.Root
           collection={languages}
           size={{ base: "sm", md: "md", xl: "lg" }}
-          aria-label="Select a language">
+          aria-label="Select a language"
+          value={selectedLanguage}
+          onValueChange={(e) => setSelectedLanguage(e.value)}>
           <Select.HiddenSelect />
           <Select.Control>
             <Select.Trigger>
@@ -50,6 +59,7 @@ export default function Searchbar({ query, setQuery, onSearch, isLoading }) {
               />
             </Select.Trigger>
             <Select.IndicatorGroup>
+              <Select.ClearTrigger />
               <Select.Indicator />
             </Select.IndicatorGroup>
           </Select.Control>
