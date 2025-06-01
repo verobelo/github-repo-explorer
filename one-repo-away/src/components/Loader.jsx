@@ -1,14 +1,16 @@
-import { Text } from "@chakra-ui/react/typography";
+import { Alert } from "@chakra-ui/react/alert";
+import { Spinner } from "@chakra-ui/react/spinner";
 
 export default function Loader() {
   return (
-    <Text
-      textAlign={"center"}
-      textTransform={"uppercase"}
-      fontSize={"md"}
-      fontWeight={"bold"}
-      color={{ _light: "gray.700", _dark: "gray.500" }}>
-      Loading, please wait...
-    </Text>
+    <Alert.Root
+      borderStartWidth="3px"
+      borderStartColor="colorPalette.600"
+      title="We are loading something">
+      <Alert.Indicator>
+        <Spinner size="sm" />
+      </Alert.Indicator>
+      <Alert.Title fontSize={"md"}>Loading, please wait...</Alert.Title>
+    </Alert.Root>
   );
 }
