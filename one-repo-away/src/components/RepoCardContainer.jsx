@@ -45,47 +45,48 @@ export default function RepoCardContainer({ repos }) {
           </GridItem>
         ))}
       </Grid>
-
-      <Box w={"full"} display={"flex"} justifyContent={"center"}>
-        <Pagination.Root
-          count={10}
-          pageSize={2}
-          defaultPage={1}
-          aria-label="pagination"
-          p="2">
-          <ButtonGroup
-            variant="ghost"
-            size={{ base: "xs", sm: "sm", md: "md", xl: "lg" }}
-            gap={{ base: 1, md: 2, xl: 3 }}>
-            <Pagination.PrevTrigger asChild>
-              <IconButton
-                aria-label="Go to previous"
-                size={{ base: "sm", md: "md", xl: "lg" }}>
-                <ChevronLeft />
-              </IconButton>
-            </Pagination.PrevTrigger>
-
-            <Pagination.Items
-              render={(page) => (
+      {repos.length > 0 && (
+        <Box w={"full"} display={"flex"} justifyContent={"center"}>
+          <Pagination.Root
+            count={10}
+            pageSize={2}
+            defaultPage={1}
+            aria-label="pagination"
+            p="2">
+            <ButtonGroup
+              variant="ghost"
+              size={{ base: "xs", sm: "sm", md: "md", xl: "lg" }}
+              gap={{ base: 1, md: 2, xl: 3 }}>
+              <Pagination.PrevTrigger asChild>
                 <IconButton
-                  variant={{ base: "ghost", _selected: "outline" }}
-                  fontSize={{ base: "sm", md: "md", xl: "lg" }}
+                  aria-label="Go to previous"
                   size={{ base: "sm", md: "md", xl: "lg" }}>
-                  {page.value}
+                  <ChevronLeft />
                 </IconButton>
-              )}
-            />
+              </Pagination.PrevTrigger>
 
-            <Pagination.NextTrigger asChild>
-              <IconButton
-                aria-label="Go to next"
-                size={{ base: "sm", md: "md", xl: "lg" }}>
-                <ChevronRight />
-              </IconButton>
-            </Pagination.NextTrigger>
-          </ButtonGroup>
-        </Pagination.Root>
-      </Box>
+              <Pagination.Items
+                render={(page) => (
+                  <IconButton
+                    variant={{ base: "ghost", _selected: "outline" }}
+                    fontSize={{ base: "sm", md: "md", xl: "lg" }}
+                    size={{ base: "sm", md: "md", xl: "lg" }}>
+                    {page.value}
+                  </IconButton>
+                )}
+              />
+
+              <Pagination.NextTrigger asChild>
+                <IconButton
+                  aria-label="Go to next"
+                  size={{ base: "sm", md: "md", xl: "lg" }}>
+                  <ChevronRight />
+                </IconButton>
+              </Pagination.NextTrigger>
+            </ButtonGroup>
+          </Pagination.Root>
+        </Box>
+      )}
     </Box>
   );
 }
