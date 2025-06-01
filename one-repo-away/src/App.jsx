@@ -16,6 +16,12 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [hasSearched, setHasSearched] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState("");
+
+  let fullQuery = query;
+  selectedLanguage !== ""
+    ? (fullQuery += `+language:${selectedLanguage}`)
+    : fullQuery;
 
   const handleSearch = async () => {
     setIsLoading(true);
@@ -24,7 +30,7 @@ function App() {
     try {
       const res = await fetch(
         `https://api.github.com/search/repositories?q=${encodeURIComponent(
-          query
+          fullQuery
         )}&sort=stars&order=desc`
       );
 
@@ -60,6 +66,7 @@ function App() {
               setQuery={setQuery}
               onSearch={handleSearch}
               isLoading={isLoading}
+              setSelectedLanguage={setSelectedLanguage}
             />
             {isLoading && <Loader query={query} />}
             {error && <ErrorMessage message={error} />}
