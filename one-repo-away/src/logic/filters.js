@@ -3,19 +3,19 @@ import { createListCollection } from "@chakra-ui/react";
 export const filters = createListCollection({
   items: [
     {
-      name: "Best Match",
+      label: "Best Match",
       value: "",
     },
     {
-      name: "Most Forks",
+      label: "Most Forks",
       value: "forks",
     },
     {
-      name: "Most Stars",
+      label: "Most Stars",
       value: "stars",
     },
     {
-      name: "Recently Updated",
+      label: "Recently Updated",
       value: "updated",
     },
   ],
