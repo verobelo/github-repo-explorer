@@ -5,23 +5,33 @@ import { VStack } from "@chakra-ui/react/stack";
 import { Box } from "@chakra-ui/react/box";
 import Searchbar from "./components/SearchBar";
 import RepoCardContainer from "./components/RepoCardContainer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Loader from "./components/Loader";
+import ErrorMessage from "./components/ErrorMessage";
+import NoReposMessage from "./components/NoReposMessage";
 
 function App() {
   const [query, setQuery] = useState("");
   const [repos, setRepos] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [hasSearched, setHasSearched] = useState(false);
 
   const handleSearch = async () => {
     setIsLoading(true);
     setError("");
+    setHasSearched(true);
     try {
       const res = await fetch(
         `https://api.github.com/search/repositories?q=${encodeURIComponent(
           query
         )}&sort=stars&order=desc`
       );
+
+      if (!res.ok) {
+        throw new Error("Failed to fetch");
+      }
+
       const data = await res.json();
       setRepos(data.items || []);
     } catch (err) {
@@ -30,6 +40,14 @@ function App() {
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (query.trim() === "") {
+      setRepos([]);
+      setHasSearched(false);
+      setError("");
+    }
+  }, [query]);
 
   return (
     <Container maxW={{ base: "3xl" }} p={"0"} minH={"100dvh"}>
@@ -41,8 +59,14 @@ function App() {
               query={query}
               setQuery={setQuery}
               onSearch={handleSearch}
+              isLoading={isLoading}
             />
-            <RepoCardContainer repos={repos} />
+            {isLoading && <Loader query={query} />}
+            {error && <ErrorMessage message={error} />}
+            {!isLoading && !error && <RepoCardContainer repos={repos} />}
+            {hasSearched && !isLoading && repos.length === 0 && (
+              <NoReposMessage query={query} />
+            )}
           </VStack>
         </Box>
         <Footer />
