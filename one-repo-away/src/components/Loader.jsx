@@ -1,7 +1,7 @@
 import { Alert } from "@chakra-ui/react/alert";
 import { Spinner } from "@chakra-ui/react/spinner";
 
-export default function Loader() {
+export default function Loader({ query }) {
   return (
     <Alert.Root
       borderStartWidth="3px"
@@ -10,7 +10,9 @@ export default function Loader() {
       <Alert.Indicator>
         <Spinner size="sm" />
       </Alert.Indicator>
-      <Alert.Title fontSize={"md"}>Loading, please wait...</Alert.Title>
+      <Alert.Title fontSize={"md"}>
+        Searching for "{query}" results ...
+      </Alert.Title>
     </Alert.Root>
   );
 }
