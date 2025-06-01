@@ -7,7 +7,7 @@ import { languages } from "@/logic/languages";
 import { HStack } from "@chakra-ui/react/stack";
 import { Search } from "lucide-react";
 
-export default function Searchbar({ query, setQuery, onSearch }) {
+export default function Searchbar({ query, setQuery, onSearch, isLoading }) {
   function handleSubmit(e) {
     e.preventDefault();
     onSearch();
@@ -26,6 +26,7 @@ export default function Searchbar({ query, setQuery, onSearch }) {
             onChange={(e) => setQuery(e.target.value)}
           />
           <IconButton
+            loading={isLoading}
             type="submit"
             aria-label="Search repositories"
             colorPalette="blue"
