@@ -23,9 +23,9 @@ function App() {
     setSelectedFilter,
     page,
     perPage,
-    totalPages,
     handleSearch,
     goToPage,
+    totalResults,
   } = useRepoSearch();
 
   return (
@@ -51,7 +51,7 @@ function App() {
                 page={page}
                 goToPage={goToPage}
                 perPage={perPage}
-                totalPages={totalPages}
+                totalResults={totalResults}
               />
             )}
             {hasSearched && !isLoading && repos.length === 0 && (
