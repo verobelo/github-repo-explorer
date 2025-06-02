@@ -9,7 +9,7 @@ import { Heading } from "@chakra-ui/react/typography";
 export default function RepoCardContainer({
   repos,
   page,
-  setPage,
+  goToPage,
   perPage,
   totalPages,
 }) {
@@ -60,7 +60,7 @@ export default function RepoCardContainer({
             aria-label="pagination"
             p="2"
             page={page}
-            onPageChange={(e) => setPage(e.page)}>
+            onPageChange={(e) => goToPage(e.page)}>
             <ButtonGroup attached variant="ghost">
               <Pagination.PrevTrigger asChild>
                 <IconButton aria-label="Go to previous">
