@@ -10,6 +10,7 @@ export default function useRepoSearch() {
   const [selectedFilter, setSelectedFilter] = useState("");
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
+  const [totalResults, setTotalResults] = useState(0);
   const perPage = 12;
 
   const fetchRepos = async (searchQuery = query, pageNumber = page) => {
@@ -42,6 +43,7 @@ export default function useRepoSearch() {
       const data = await res.json();
       setRepos(data.items || []);
       setTotalPages(Math.min(Math.ceil(data.total_count / perPage), 100));
+      setTotalResults(data.total_count);
     } catch (err) {
       setError(err.message || "Something went wrong");
     } finally {
@@ -75,5 +77,6 @@ export default function useRepoSearch() {
     totalPages,
     handleSearch,
     goToPage,
+    totalResults,
   };
 }
