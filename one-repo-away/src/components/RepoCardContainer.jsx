@@ -6,7 +6,13 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Box } from "@chakra-ui/react/box";
 import { Heading } from "@chakra-ui/react/typography";
 
-export default function RepoCardContainer({ repos }) {
+export default function RepoCardContainer({
+  repos,
+  page,
+  setPage,
+  perPage,
+  totalPages,
+}) {
   return (
     <Box
       bg={{ base: "gray.50", _dark: "gray.800" }}
@@ -48,38 +54,30 @@ export default function RepoCardContainer({ repos }) {
       {repos.length > 0 && (
         <Box w={"full"} display={"flex"} justifyContent={"center"}>
           <Pagination.Root
-            count={10}
-            pageSize={2}
+            count={totalPages}
+            pageSize={perPage}
             defaultPage={1}
             aria-label="pagination"
-            p="2">
-            <ButtonGroup
-              variant="ghost"
-              size={{ base: "xs", sm: "sm", md: "md", xl: "lg" }}
-              gap={{ base: 1, md: 2, xl: 3 }}>
+            p="2"
+            page={page}
+            onPageChange={(e) => setPage(e.page)}>
+            <ButtonGroup attached variant="ghost">
               <Pagination.PrevTrigger asChild>
-                <IconButton
-                  aria-label="Go to previous"
-                  size={{ base: "sm", md: "md", xl: "lg" }}>
+                <IconButton aria-label="Go to previous">
                   <ChevronLeft />
                 </IconButton>
               </Pagination.PrevTrigger>
 
               <Pagination.Items
                 render={(page) => (
-                  <IconButton
-                    variant={{ base: "ghost", _selected: "outline" }}
-                    fontSize={{ base: "sm", md: "md", xl: "lg" }}
-                    size={{ base: "sm", md: "md", xl: "lg" }}>
+                  <IconButton variant={{ base: "ghost", _selected: "outline" }}>
                     {page.value}
                   </IconButton>
                 )}
               />
 
               <Pagination.NextTrigger asChild>
-                <IconButton
-                  aria-label="Go to next"
-                  size={{ base: "sm", md: "md", xl: "lg" }}>
+                <IconButton aria-label="Go to next">
                   <ChevronRight />
                 </IconButton>
               </Pagination.NextTrigger>
