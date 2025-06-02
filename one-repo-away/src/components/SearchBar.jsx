@@ -6,6 +6,7 @@ import { Portal } from "@chakra-ui/react/portal";
 import { languages } from "@/logic/languages";
 import { HStack } from "@chakra-ui/react/stack";
 import { Search } from "lucide-react";
+import { filters } from "@/logic/filters";
 
 export default function Searchbar({
   query,
@@ -14,6 +15,8 @@ export default function Searchbar({
   isLoading,
   selectedLanguage,
   setSelectedLanguage,
+  selectedFilter,
+  setSelectedFilter,
 }) {
   function handleSubmit(e) {
     e.preventDefault();
@@ -68,7 +71,7 @@ export default function Searchbar({
               <Select.Content>
                 {languages.items.map((language) => (
                   <Select.Item item={language} key={language.value}>
-                    {language.title}
+                    {language.label}
                     <Select.ItemIndicator />
                   </Select.Item>
                 ))}
@@ -78,8 +81,11 @@ export default function Searchbar({
         </Select.Root>
 
         <Select.Root
+          collection={filters}
           size={{ base: "sm", md: "md", xl: "lg" }}
-          aria-label="Select a filter">
+          aria-label="Select a filter"
+          value={selectedFilter}
+          onValueChange={(e) => setSelectedFilter(e.value)}>
           <Select.HiddenSelect />
           <Select.Control>
             <Select.Trigger>
@@ -89,15 +95,19 @@ export default function Searchbar({
               />
             </Select.Trigger>
             <Select.IndicatorGroup>
+              <Select.ClearTrigger />
               <Select.Indicator />
             </Select.IndicatorGroup>
           </Select.Control>
           <Portal>
             <Select.Positioner>
               <Select.Content>
-                <Select.Item item="Best Match">Best Match</Select.Item>
-                <Select.Item item="Most Stars">Most Stars</Select.Item>
-                <Select.Item item="Most Forks">Most Forks</Select.Item>
+                {filters.items.map((filter) => (
+                  <Select.Item item={filter} key={filter.value}>
+                    <Select.ItemText>{filter.label}</Select.ItemText>
+                    <Select.ItemIndicator />
+                  </Select.Item>
+                ))}
               </Select.Content>
             </Select.Positioner>
           </Portal>
