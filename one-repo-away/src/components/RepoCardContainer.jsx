@@ -12,6 +12,7 @@ export default function RepoCardContainer({
   goToPage,
   perPage,
   totalPages,
+  totalResults,
 }) {
   return (
     <Box
@@ -26,7 +27,7 @@ export default function RepoCardContainer({
         fontSize={{ base: "sm", md: "md", xl: "lg" }}
         pb={"1"}
         color={{ _light: "gray.600", _dark: "gray.400" }}>
-        Repository Results
+        Repository Results ({totalResults})
       </Heading>
       <Grid
         as={"ul"}
@@ -61,7 +62,10 @@ export default function RepoCardContainer({
             p="2"
             page={page}
             onPageChange={(e) => goToPage(e.page)}>
-            <ButtonGroup attached variant="ghost">
+            <ButtonGroup
+              attached
+              variant="ghost"
+              size={{ base: "xs", sm: "md", lg: "lg" }}>
               <Pagination.PrevTrigger asChild>
                 <IconButton aria-label="Go to previous">
                   <ChevronLeft />
