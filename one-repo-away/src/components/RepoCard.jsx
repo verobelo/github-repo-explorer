@@ -37,7 +37,7 @@ export default function RepoCard({
           truncate
           fontSize={"sm"}
           color={{ _light: "gray.600", _dark: "gray.400" }}>
-          {language ? language : "None"}
+          {language ?? "None"}
         </Text>
 
         <Flex align={"center"} gap={"1"}>
