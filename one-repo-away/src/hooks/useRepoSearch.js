@@ -41,9 +41,16 @@ export default function useRepoSearch() {
       if (!res.ok) throw new Error("Failed to fetch");
 
       const data = await res.json();
+
+      console.log("Total count:", data.total_count);
+      console.log("Items received:", data.items.length);
+
       setRepos(data.items || []);
-      setTotalPages(Math.min(Math.ceil(data.total_count / perPage), 100));
       setTotalResults(data.total_count);
+      const totalPagesCount = Math.ceil(data.total_count / perPage);
+      setTotalPages(Math.min(totalPagesCount, 100));
+
+      console.log("Calculated total pages:", totalPagesCount);
     } catch (err) {
       setError(err.message || "Something went wrong");
     } finally {
