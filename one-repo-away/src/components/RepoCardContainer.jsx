@@ -11,7 +11,6 @@ export default function RepoCardContainer({
   page,
   goToPage,
   perPage,
-  totalPages,
   totalResults,
 }) {
   return (
@@ -55,9 +54,8 @@ export default function RepoCardContainer({
       {repos.length > 0 && (
         <Box w={"full"} display={"flex"} justifyContent={"center"}>
           <Pagination.Root
-            count={totalPages}
+            count={totalResults}
             pageSize={perPage}
-            defaultPage={1}
             aria-label="pagination"
             p="2"
             page={page}
@@ -74,7 +72,10 @@ export default function RepoCardContainer({
 
               <Pagination.Items
                 render={(page) => (
-                  <IconButton variant={{ base: "ghost", _selected: "outline" }}>
+                  <IconButton
+                    key={page.value}
+                    {...page}
+                    variant={{ base: "ghost", _selected: "outline" }}>
                     {page.value}
                   </IconButton>
                 )}
