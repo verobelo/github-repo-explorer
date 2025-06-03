@@ -74,7 +74,7 @@ export default function useRepoSearch() {
       const randomIndex = Math.floor(Math.random() * data.items.length);
       const randomRepo = data.items[randomIndex];
 
-      setRepos(randomRepo);
+      setRepos([randomRepo]);
       setTotalResults(1);
       setTotalPages(1);
       setPage(1);
