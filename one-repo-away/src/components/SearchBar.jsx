@@ -7,6 +7,7 @@ import { languages } from "@/logic/languages";
 import { HStack } from "@chakra-ui/react/stack";
 import { Search } from "lucide-react";
 import { filters } from "@/logic/filters";
+import { Tooltip } from "./ui/tooltip";
 
 export default function Searchbar({
   query,
@@ -17,6 +18,7 @@ export default function Searchbar({
   setSelectedLanguage,
   selectedFilter,
   setSelectedFilter,
+  randomRepo,
 }) {
   function handleSubmit(e) {
     e.preventDefault();
@@ -112,14 +114,24 @@ export default function Searchbar({
             </Select.Positioner>
           </Portal>
         </Select.Root>
-
-        <Button
-          colorPalette={"green"}
-          alignSelf={"center"}
-          size={{ base: "sm", md: "md", xl: "xl" }}
-          fontSize={{ base: "sm", md: "md" }}>
-          Suprise me with a random repo!
-        </Button>
+        <Tooltip
+          content="Find a random repository"
+          openDelay={200}
+          closeDelay={100}
+          contentProps={{
+            css: { "--tooltip-bg": "#16a34a" },
+          }}>
+          <Button
+            loading={isLoading}
+            disabled={query.trim().length > 0}
+            colorPalette={"green"}
+            alignSelf={"center"}
+            size={{ base: "sm", md: "md", xl: "xl" }}
+            fontSize={{ base: "sm", md: "md" }}
+            onClick={randomRepo}>
+            Suprise me!
+          </Button>
+        </Tooltip>
       </Flex>
     </Flex>
   );
