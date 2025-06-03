@@ -1,6 +1,6 @@
-import { Button, IconButton } from "@chakra-ui/react/button";
+import { Button, IconButton, CloseButton } from "@chakra-ui/react/button";
 import { Flex } from "@chakra-ui/react/flex";
-import { Input } from "@chakra-ui/react/input";
+import { Input, InputGroup } from "@chakra-ui/react/input";
 import { Select } from "@chakra-ui/react/select";
 import { Portal } from "@chakra-ui/react/portal";
 import { languages } from "@/logic/languages";
@@ -8,6 +8,7 @@ import { HStack } from "@chakra-ui/react/stack";
 import { Search } from "lucide-react";
 import { filters } from "@/logic/filters";
 import { Tooltip } from "./ui/tooltip";
+import { useRef } from "react";
 
 export default function Searchbar({
   query,
@@ -20,6 +21,18 @@ export default function Searchbar({
   setSelectedFilter,
   randomRepo,
 }) {
+  const inputRef = (useRef < HTMLInputElement) | (null > null);
+  const endElement = query ? (
+    <CloseButton
+      size="xs"
+      onClick={() => {
+        setQuery("");
+        inputRef.current?.focus();
+      }}
+      me="-2"
+    />
+  ) : undefined;
+
   function handleSubmit(e) {
     e.preventDefault();
     onSearch();
@@ -29,14 +42,17 @@ export default function Searchbar({
     <Flex direction={"column"} gap={"2"}>
       <form onSubmit={handleSubmit} style={{ width: "100%" }}>
         <HStack w="full" spacing={0}>
-          <Input
-            type="text"
-            placeholder="Search repositories..."
-            _placeholder={{ fontSize: { base: "sm", md: "md" } }}
-            size={{ base: "sm", md: "md", xl: "xl" }}
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
+          <InputGroup endElement={endElement}>
+            <Input
+              type="text"
+              placeholder="Search repositories..."
+              _placeholder={{ fontSize: { base: "sm", md: "md" } }}
+              size={{ base: "sm", md: "md", xl: "xl" }}
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+            />
+          </InputGroup>
+
           <IconButton
             loading={isLoading}
             type="submit"
