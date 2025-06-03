@@ -42,15 +42,42 @@ export default function useRepoSearch() {
 
       const data = await res.json();
 
-      console.log("Total count:", data.total_count);
-      console.log("Items received:", data.items.length);
-
       setRepos(data.items || []);
       setTotalResults(data.total_count);
       const totalPagesCount = Math.ceil(data.total_count / perPage);
       setTotalPages(Math.min(totalPagesCount, 100));
+    } catch (err) {
+      setError(err.message || "Something went wrong");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-      console.log("Calculated total pages:", totalPagesCount);
+  const fetchRandomRepo = async () => {
+    setIsLoading(true);
+    setError("");
+    setHasSearched(true);
+
+    const randomQuery = "stars:>5000";
+    const randomPage = Math.floor(Math.random() * 10) + 1;
+
+    try {
+      const res = await fetch(
+        `https://api.github.com/search/repositories?q=${encodeURIComponent(
+          randomQuery
+        )}&sort=stars&order=desc&page=${randomPage}&per_page=${perPage}`
+      );
+
+      if (!res.ok) throw new Error("Failed to fetch");
+
+      const data = await res.json();
+      const randomIndex = Math.floor(Math.random() * data.items.length);
+      const randomRepo = data.items[randomIndex];
+
+      setRepos(randomRepo);
+      setTotalResults(1);
+      setTotalPages(1);
+      setPage(1);
     } catch (err) {
       setError(err.message || "Something went wrong");
     } finally {
@@ -85,5 +112,6 @@ export default function useRepoSearch() {
     handleSearch,
     goToPage,
     totalResults,
+    fetchRandomRepo,
   };
 }
