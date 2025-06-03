@@ -5,7 +5,7 @@ import { Select } from "@chakra-ui/react/select";
 import { Portal } from "@chakra-ui/react/portal";
 import { languages } from "@/logic/languages";
 import { HStack } from "@chakra-ui/react/stack";
-import { Search } from "lucide-react";
+import { Dices, Search } from "lucide-react";
 import { filters } from "@/logic/filters";
 import { Tooltip } from "./ui/tooltip";
 import { useRef } from "react";
@@ -145,6 +145,7 @@ export default function Searchbar({
             size={{ base: "sm", md: "md", xl: "xl" }}
             fontSize={{ base: "sm", md: "md" }}
             onClick={randomRepo}>
+            <Dices />
             Suprise me!
           </Button>
         </Tooltip>
