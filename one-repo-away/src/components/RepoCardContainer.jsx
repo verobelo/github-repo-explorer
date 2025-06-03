@@ -25,8 +25,9 @@ export default function RepoCardContainer({
         as="h2"
         fontSize={{ base: "sm", md: "md", xl: "lg" }}
         pb={"1"}
-        color={{ _light: "gray.600", _dark: "gray.400" }}>
-        Repository Results ({totalResults})
+        color={{ _light: "gray.600", _dark: "gray.400" }}
+        textAlign={"center"}>
+        Repository Results {totalResults > 0 && `( ${totalResults} )`}
       </Heading>
       <Grid
         as={"ul"}
@@ -47,6 +48,7 @@ export default function RepoCardContainer({
               forks={repo.forks}
               stars={repo.stargazers_count}
               url={repo.html_url}
+              isRandom
             />
           </GridItem>
         ))}
