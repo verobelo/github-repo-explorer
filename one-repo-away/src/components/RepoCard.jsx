@@ -3,8 +3,9 @@ import { Card } from "@chakra-ui/react/card";
 import { Flex } from "@chakra-ui/react/flex";
 import { Icon } from "@chakra-ui/react/icon";
 import { Text } from "@chakra-ui/react/typography";
-import { GitFork, Star } from "lucide-react";
+import { Dices, GitFork, Star } from "lucide-react";
 import { IconButton } from "@chakra-ui/react/button";
+import { Badge } from "@chakra-ui/react/badge";
 
 export default function RepoCard({
   title,
@@ -13,10 +14,25 @@ export default function RepoCard({
   forks,
   stars,
   url,
+  isRandom = false,
 }) {
   return (
-    <Card.Root as={"li"} w={"full"} minH={"250px"} h={"100%"}>
+    <Card.Root
+      as={"li"}
+      w={"full"}
+      minH={"250px"}
+      h={"100%"}
+      border={isRandom && "2px dashed green"}
+      bg={isRandom && "green.50"}>
       <Card.Body gap="2">
+        {isRandom && (
+          <Badge
+            colorPalette="green"
+            variant={"subtle"}
+            size={{ base: "sm", sm: "md" }}>
+            <Dices /> Random Pick
+          </Badge>
+        )}
         <Card.Title
           mt="2"
           fontSize={{ base: "sm", md: "md", xl: "lg" }}
