@@ -26,6 +26,7 @@ function App() {
     handleSearch,
     goToPage,
     totalResults,
+    fetchRandomRepo,
   } = useRepoSearch();
 
   return (
@@ -42,6 +43,7 @@ function App() {
               setSelectedLanguage={setSelectedLanguage}
               selectedFilter={selectedFilter}
               setSelectedFilter={setSelectedFilter}
+              randomRepo={fetchRandomRepo}
             />
             {isLoading && <Loader query={query} />}
             {error && <ErrorMessage message={error} />}
