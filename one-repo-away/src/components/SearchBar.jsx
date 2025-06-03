@@ -118,7 +118,7 @@ export default function Searchbar({
           alignSelf={"center"}
           size={{ base: "sm", md: "md", xl: "xl" }}
           fontSize={{ base: "sm", md: "md" }}>
-          Find a Random Repo
+          Suprise me with a random repo!
         </Button>
       </Flex>
     </Flex>
