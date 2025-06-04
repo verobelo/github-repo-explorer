@@ -11,6 +11,7 @@ export default function useRepoSearch() {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [totalResults, setTotalResults] = useState(0);
+  const [randomRepoId, setRandomRepoId] = useState(null);
   const perPage = 12;
 
   const fetchRepos = async (searchQuery = query, pageNumber = page) => {
@@ -75,6 +76,7 @@ export default function useRepoSearch() {
       const randomRepo = data.items[randomIndex];
 
       setRepos([randomRepo]);
+      setRandomRepoId(randomRepo.id);
       setTotalResults(1);
       setTotalPages(1);
       setPage(1);
@@ -99,9 +101,11 @@ export default function useRepoSearch() {
     query,
     setQuery,
     repos,
+    setRepos,
     isLoading,
     error,
     hasSearched,
+    setHasSearched,
     selectedLanguage,
     setSelectedLanguage,
     selectedFilter,
@@ -113,5 +117,6 @@ export default function useRepoSearch() {
     goToPage,
     totalResults,
     fetchRandomRepo,
+    randomRepoId,
   };
 }
