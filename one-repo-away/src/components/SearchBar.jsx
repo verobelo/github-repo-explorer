@@ -5,7 +5,7 @@ import { Select } from "@chakra-ui/react/select";
 import { Portal } from "@chakra-ui/react/portal";
 import { languages } from "@/logic/languages";
 import { HStack } from "@chakra-ui/react/stack";
-import { Dices, Search } from "lucide-react";
+import { BrushCleaning, Dices, Search } from "lucide-react";
 import { filters } from "@/logic/filters";
 import { Tooltip } from "./ui/tooltip";
 import { useRef } from "react";
@@ -24,6 +24,7 @@ export default function Searchbar({
   randomRepo,
   setRepos,
   setHasSearched,
+  handleClear,
 }) {
   const inputRef = (useRef < HTMLInputElement) | (null > null);
   const endElement = query ? (
@@ -59,6 +60,15 @@ export default function Searchbar({
               onChange={(e) => setQuery(e.target.value)}
             />
           </InputGroup>
+
+          <IconButton
+            onClick={handleClear}
+            type="button"
+            aria-label="Clear results"
+            colorPalette="blue"
+            size={{ base: "sm", md: "md", xl: "xl" }}>
+            <BrushCleaning />
+          </IconButton>
 
           <IconButton
             loading={isLoading}
