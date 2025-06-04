@@ -109,6 +109,7 @@ export default function useRepoSearch() {
     isLoading,
     isRandomLoading,
     error,
+    setError,
     hasSearched,
     setHasSearched,
     selectedLanguage,
