@@ -45,8 +45,11 @@ export default function useRepoSearch() {
 
       setRepos(data.items || []);
       setTotalResults(data.total_count);
-      const totalPagesCount = Math.ceil(data.total_count / perPage);
-      setTotalPages(Math.min(totalPagesCount, 100));
+      const totalPagesCount = Math.min(
+        100,
+        Math.ceil(data.total_count / perPage)
+      );
+      setTotalPages(totalPagesCount);
     } catch (err) {
       setError(err.message || "Something went wrong");
     } finally {
