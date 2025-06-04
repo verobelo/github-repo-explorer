@@ -5,6 +5,7 @@ export default function useRepoSearch() {
   const [repos, setRepos] = useState([]);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isRandomLoading, setIsRandomLoading] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState("");
   const [selectedFilter, setSelectedFilter] = useState("");
@@ -58,7 +59,7 @@ export default function useRepoSearch() {
   };
 
   const fetchRandomRepo = async () => {
-    setIsLoading(true);
+    setIsRandomLoading(true);
     setError("");
     setHasSearched(true);
 
@@ -86,7 +87,7 @@ export default function useRepoSearch() {
     } catch (err) {
       setError(err.message || "Something went wrong");
     } finally {
-      setIsLoading(false);
+      setIsRandomLoading(false);
     }
   };
 
@@ -106,6 +107,7 @@ export default function useRepoSearch() {
     repos,
     setRepos,
     isLoading,
+    isRandomLoading,
     error,
     hasSearched,
     setHasSearched,
