@@ -29,11 +29,18 @@ export default function RepoCardContainer({
         pb={"1"}
         color={{ _light: "gray.600", _dark: "gray.400" }}
         textAlign={"center"}>
-        {totalResults > 0
-          ? `Showing top ${
-              perPage * totalPages
-            } repositories (as per GitHub REST API limitations)`
-          : "Repository Results"}
+        {totalResults === 0 && "Repository Results"}
+        {totalResults <= 1000 &&
+          `Repository results (${Math.min(
+            totalResults,
+            perPage * totalPages
+          )})`}
+
+        {totalResults > 1000 &&
+          `Showing top ${Math.min(
+            totalResults,
+            perPage * totalPages
+          )} repositories (as per GitHub REST API limitations)`}
       </Heading>
       <Grid
         as={"ul"}
@@ -62,7 +69,7 @@ export default function RepoCardContainer({
       {repos.length > 0 && (
         <Box w={"full"} display={"flex"} justifyContent={"center"}>
           <Pagination.Root
-            count={totalPages}
+            count={perPage * totalPages}
             pageSize={perPage}
             aria-label="pagination"
             p="2"
