@@ -1,6 +1,6 @@
 import { Grid, GridItem } from "@chakra-ui/react/grid";
 import RepoCard from "./RepoCard";
-import { IconButton, ButtonGroup } from "@chakra-ui/react/button";
+import { IconButton, ButtonGroup, Button } from "@chakra-ui/react/button";
 import { Pagination } from "@chakra-ui/react/pagination";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Box } from "@chakra-ui/react/box";
