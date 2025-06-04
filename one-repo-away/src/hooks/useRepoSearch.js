@@ -12,7 +12,7 @@ export default function useRepoSearch() {
   const [totalPages, setTotalPages] = useState(0);
   const [totalResults, setTotalResults] = useState(0);
   const [randomRepoId, setRandomRepoId] = useState(null);
-  const perPage = 12;
+  const perPage = 10;
 
   const fetchRepos = async (searchQuery = query, pageNumber = page) => {
     if (searchQuery.trim().length === 0) {
