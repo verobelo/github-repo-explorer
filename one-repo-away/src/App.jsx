@@ -27,13 +27,20 @@ function App() {
     perPage,
     handleSearch,
     goToPage,
+    totalPages,
+    setTotalResults,
     totalResults,
     fetchRandomRepo,
     randomRepoId,
   } = useRepoSearch();
 
   return (
-    <Container maxW={{ base: "3xl" }} p={"0"} minH={"100dvh"}>
+    <Container
+      maxW={{ base: "3xl" }}
+      p={"0"}
+      minH={"100dvh"}
+      display={"flex"}
+      flexDirection={"column"}>
       <VStack p={"4"} gap={"6"} align={{ base: "stretch", md: "center" }}>
         <Header />
         <Box as="main">
@@ -42,6 +49,7 @@ function App() {
               setHasSearched={setHasSearched}
               query={query}
               setQuery={setQuery}
+              setTotalResults={setTotalResults}
               onSearch={handleSearch}
               isLoading={isLoading}
               setSelectedLanguage={setSelectedLanguage}
@@ -58,6 +66,7 @@ function App() {
                 page={page}
                 goToPage={goToPage}
                 perPage={perPage}
+                totalPages={totalPages}
                 totalResults={totalResults}
                 randomRepoId={randomRepoId}
               />
@@ -67,8 +76,8 @@ function App() {
             )}
           </VStack>
         </Box>
-        <Footer />
       </VStack>
+      <Footer />
     </Container>
   );
 }
