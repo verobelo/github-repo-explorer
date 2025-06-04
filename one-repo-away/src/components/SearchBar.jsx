@@ -13,6 +13,7 @@ import { useRef } from "react";
 export default function Searchbar({
   query,
   setQuery,
+  setTotalResults,
   onSearch,
   isLoading,
   selectedLanguage,
@@ -31,6 +32,7 @@ export default function Searchbar({
         setQuery("");
         setRepos([]);
         setHasSearched(false);
+        setTotalResults(0);
         inputRef.current?.focus();
       }}
       me="-2"
