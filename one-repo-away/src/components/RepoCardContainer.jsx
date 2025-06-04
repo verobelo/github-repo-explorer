@@ -30,7 +30,8 @@ export default function RepoCardContainer({
         color={{ _light: "gray.600", _dark: "gray.400" }}
         textAlign={"center"}>
         {totalResults === 0 && "Repository Results"}
-        {totalResults > 0 &&
+        {totalResults === 1 && "Random Repository"}
+        {totalResults > 1 &&
           totalResults <= 1000 &&
           `Repository results (${Math.min(
             totalResults,
