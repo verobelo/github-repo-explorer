@@ -12,6 +12,7 @@ export default function RepoCardContainer({
   goToPage,
   perPage,
   totalResults,
+  totalPages,
   randomRepoId,
 }) {
   return (
@@ -28,7 +29,11 @@ export default function RepoCardContainer({
         pb={"1"}
         color={{ _light: "gray.600", _dark: "gray.400" }}
         textAlign={"center"}>
-        Repository Results {totalResults > 0 && `( ${totalResults} )`}
+        {totalResults > 0
+          ? `Showing top ${
+              perPage * totalPages
+            } repositories (as per GitHub REST API limitations)`
+          : "Repository Results"}
       </Heading>
       <Grid
         as={"ul"}
@@ -57,10 +62,11 @@ export default function RepoCardContainer({
       {repos.length > 0 && (
         <Box w={"full"} display={"flex"} justifyContent={"center"}>
           <Pagination.Root
-            count={totalResults}
+            count={totalPages}
             pageSize={perPage}
             aria-label="pagination"
             p="2"
+            siblingCount={"3"}
             page={page}
             onPageChange={(e) => goToPage(e.page)}>
             <ButtonGroup
