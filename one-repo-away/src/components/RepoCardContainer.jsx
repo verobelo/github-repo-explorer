@@ -12,6 +12,7 @@ export default function RepoCardContainer({
   goToPage,
   perPage,
   totalResults,
+  randomRepoId,
 }) {
   return (
     <Box
@@ -48,7 +49,7 @@ export default function RepoCardContainer({
               forks={repo.forks}
               stars={repo.stargazers_count}
               url={repo.html_url}
-              isRandom
+              isRandom={repo.id === randomRepoId}
             />
           </GridItem>
         ))}
