@@ -15,9 +15,11 @@ function App() {
     query,
     setQuery,
     repos,
+    setRepos,
     isLoading,
     error,
     hasSearched,
+    setHasSearched,
     setSelectedLanguage,
     selectedFilter,
     setSelectedFilter,
@@ -27,6 +29,7 @@ function App() {
     goToPage,
     totalResults,
     fetchRandomRepo,
+    randomRepoId,
   } = useRepoSearch();
 
   return (
@@ -36,6 +39,7 @@ function App() {
         <Box as="main">
           <VStack gap="6" align="stretch" mt={{ base: 2, md: 4 }}>
             <Searchbar
+              setHasSearched={setHasSearched}
               query={query}
               setQuery={setQuery}
               onSearch={handleSearch}
@@ -44,6 +48,7 @@ function App() {
               selectedFilter={selectedFilter}
               setSelectedFilter={setSelectedFilter}
               randomRepo={fetchRandomRepo}
+              setRepos={setRepos}
             />
             {isLoading && <Loader query={query} />}
             {error && <ErrorMessage message={error} />}
@@ -54,6 +59,7 @@ function App() {
                 goToPage={goToPage}
                 perPage={perPage}
                 totalResults={totalResults}
+                randomRepoId={randomRepoId}
               />
             )}
             {hasSearched && !isLoading && repos.length === 0 && (
