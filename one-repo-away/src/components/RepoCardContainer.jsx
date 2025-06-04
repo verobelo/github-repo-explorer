@@ -30,7 +30,8 @@ export default function RepoCardContainer({
         color={{ _light: "gray.600", _dark: "gray.400" }}
         textAlign={"center"}>
         {totalResults === 0 && "Repository Results"}
-        {totalResults <= 1000 &&
+        {totalResults > 0 &&
+          totalResults <= 1000 &&
           `Repository results (${Math.min(
             totalResults,
             perPage * totalPages
@@ -50,7 +51,7 @@ export default function RepoCardContainer({
           md: "repeat(2, minmax(300px, 1fr))",
           xl: "repeat(3, minmax(300px, 1fr))",
         }}
-        placeItems={"center"}
+        placeContent={"center"}
         gap={"2"}>
         {repos.map((repo) => (
           <GridItem key={repo.id} w={"full"} maxW="300px">
