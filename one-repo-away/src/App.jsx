@@ -17,6 +17,7 @@ function App() {
     repos,
     setRepos,
     isLoading,
+    isRandomLoading,
     error,
     hasSearched,
     setHasSearched,
@@ -36,7 +37,7 @@ function App() {
 
   return (
     <Container
-      maxW={{ base: "3xl" }}
+      maxW={"3xl"}
       p={"0"}
       minH={"100dvh"}
       display={"flex"}
@@ -52,6 +53,7 @@ function App() {
               setTotalResults={setTotalResults}
               onSearch={handleSearch}
               isLoading={isLoading}
+              isRandomLoading={isRandomLoading}
               setSelectedLanguage={setSelectedLanguage}
               selectedFilter={selectedFilter}
               setSelectedFilter={setSelectedFilter}
