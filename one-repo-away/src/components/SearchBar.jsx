@@ -20,6 +20,8 @@ export default function Searchbar({
   selectedFilter,
   setSelectedFilter,
   randomRepo,
+  setRepos,
+  setHasSearched,
 }) {
   const inputRef = (useRef < HTMLInputElement) | (null > null);
   const endElement = query ? (
@@ -27,6 +29,8 @@ export default function Searchbar({
       size="xs"
       onClick={() => {
         setQuery("");
+        setRepos([]);
+        setHasSearched(false);
         inputRef.current?.focus();
       }}
       me="-2"
