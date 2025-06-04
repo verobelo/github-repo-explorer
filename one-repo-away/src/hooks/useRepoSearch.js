@@ -119,6 +119,7 @@ export default function useRepoSearch() {
     handleSearch,
     goToPage,
     totalResults,
+    setTotalResults,
     fetchRandomRepo,
     randomRepoId,
   };
