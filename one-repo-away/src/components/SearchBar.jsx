@@ -16,6 +16,7 @@ export default function Searchbar({
   setTotalResults,
   onSearch,
   isLoading,
+  isRandomLoading,
   selectedLanguage,
   setSelectedLanguage,
   selectedFilter,
@@ -144,7 +145,7 @@ export default function Searchbar({
             css: { "--tooltip-bg": "#16a34a" },
           }}>
           <Button
-            loading={isLoading}
+            loading={isRandomLoading}
             disabled={query.trim().length > 0}
             colorPalette={"green"}
             alignSelf={"center"}
