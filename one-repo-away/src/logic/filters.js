@@ -4,7 +4,7 @@ export const filters = createListCollection({
   items: [
     {
       label: "Best Match",
-      value: "",
+      value: "best-match",
     },
     {
       label: "Most Forks",
