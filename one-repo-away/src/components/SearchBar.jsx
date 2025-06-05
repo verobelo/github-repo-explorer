@@ -62,7 +62,7 @@ export default function Searchbar({
           </InputGroup>
 
           <Tooltip
-            content="Clear search"
+            content="Clear search and repos"
             openDelay={200}
             closeDelay={100}
             contentProps={{
