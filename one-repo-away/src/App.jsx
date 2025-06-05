@@ -19,6 +19,7 @@ function App() {
     isLoading,
     isRandomLoading,
     error,
+    setError,
     hasSearched,
     setHasSearched,
     setSelectedLanguage,
@@ -34,6 +35,14 @@ function App() {
     fetchRandomRepo,
     randomRepoId,
   } = useRepoSearch();
+
+  function handleClear() {
+    setQuery("");
+    setRepos([]);
+    setError("");
+    setHasSearched(false);
+    setTotalResults(0);
+  }
 
   return (
     <Container
@@ -59,6 +68,7 @@ function App() {
               setSelectedFilter={setSelectedFilter}
               randomRepo={fetchRandomRepo}
               setRepos={setRepos}
+              handleClear={handleClear}
             />
             {isLoading && <Loader query={query} />}
             {error && <ErrorMessage message={error} />}
