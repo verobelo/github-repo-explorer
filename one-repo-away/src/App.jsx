@@ -3,12 +3,13 @@ import Footer from "./components/Footer";
 import { Container } from "@chakra-ui/react/container";
 import { VStack } from "@chakra-ui/react/stack";
 import { Box } from "@chakra-ui/react/box";
-import Searchbar from "./components/SearchBar";
+import { Searchbar } from "./components/SearchBar";
 import RepoCardContainer from "./components/RepoCardContainer";
 import Loader from "./components/Loader";
 import ErrorMessage from "./components/ErrorMessage";
 import NoReposMessage from "./components/NoReposMessage";
 import useRepoSearch from "./hooks/useRepoSearch";
+import { useRef } from "react";
 
 function App() {
   const {
@@ -22,6 +23,7 @@ function App() {
     setError,
     hasSearched,
     setHasSearched,
+    selectedLanguage,
     setSelectedLanguage,
     selectedFilter,
     setSelectedFilter,
@@ -35,6 +37,16 @@ function App() {
     fetchRandomRepo,
     randomRepoId,
   } = useRepoSearch();
+
+  const inputRef = useRef(null);
+
+  function handleClearSearch() {
+    setQuery("");
+    setRepos([]);
+    setHasSearched(false);
+    setTotalResults(0);
+    inputRef.current?.focus();
+  }
 
   function handleClear() {
     setQuery("");
@@ -56,19 +68,19 @@ function App() {
         <Box as="main">
           <VStack gap="6" align="stretch" mt={{ base: 2, md: 4 }}>
             <Searchbar
-              setHasSearched={setHasSearched}
+              ref={inputRef}
               query={query}
               setQuery={setQuery}
-              setTotalResults={setTotalResults}
               onSearch={handleSearch}
               isLoading={isLoading}
               isRandomLoading={isRandomLoading}
+              selectedLanguage={selectedLanguage}
               setSelectedLanguage={setSelectedLanguage}
               selectedFilter={selectedFilter}
               setSelectedFilter={setSelectedFilter}
               randomRepo={fetchRandomRepo}
-              setRepos={setRepos}
               handleClear={handleClear}
+              handleClearSearch={handleClearSearch}
             />
             {isLoading && <Loader query={query} />}
             {error && <ErrorMessage message={error} />}
