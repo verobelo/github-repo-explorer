@@ -61,14 +61,22 @@ export default function Searchbar({
             />
           </InputGroup>
 
-          <IconButton
-            onClick={handleClear}
-            type="button"
-            aria-label="Clear results"
-            colorPalette="blue"
-            size={{ base: "sm", md: "md", xl: "xl" }}>
-            <BrushCleaning />
-          </IconButton>
+          <Tooltip
+            content="Clear search"
+            openDelay={200}
+            closeDelay={100}
+            contentProps={{
+              css: { "--tooltip-bg": "#2563eb" },
+            }}>
+            <IconButton
+              onClick={handleClear}
+              type="button"
+              aria-label="Clear results"
+              colorPalette="blue"
+              size={{ base: "sm", md: "md", xl: "xl" }}>
+              <BrushCleaning />
+            </IconButton>
+          </Tooltip>
 
           <IconButton
             loading={isLoading}
