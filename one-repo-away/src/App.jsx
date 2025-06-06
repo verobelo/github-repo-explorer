@@ -10,6 +10,7 @@ import ErrorMessage from "./components/ErrorMessage";
 import NoReposMessage from "./components/NoReposMessage";
 import useRepoSearch from "./hooks/useRepoSearch";
 import { useRef } from "react";
+import useLocalStorage from "./hooks/useLocalStorage";
 
 function App() {
   const {
@@ -38,7 +39,20 @@ function App() {
     randomRepoId,
   } = useRepoSearch();
 
+  const [favoriteRepos, setFavoriteRepos] = useLocalStorage(
+    [],
+    "favoriteRepos"
+  );
   const inputRef = useRef(null);
+
+  function toggleFavorite(repo) {
+    const isFavorite = favoriteRepos.some((r) => r.id === repo.id);
+
+    const updated = isFavorite
+      ? favoriteRepos.filter((r) => r.id !== repo.id)
+      : [...favoriteRepos, repo];
+    setFavoriteRepos(updated);
+  }
 
   function handleClearSearch() {
     setQuery("");
@@ -93,6 +107,8 @@ function App() {
                 totalPages={totalPages}
                 totalResults={totalResults}
                 randomRepoId={randomRepoId}
+                handleToggleFavorite={toggleFavorite}
+                favoriteRepos={favoriteRepos}
               />
             )}
             {hasSearched && !isLoading && repos.length === 0 && (
