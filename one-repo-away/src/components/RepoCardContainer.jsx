@@ -53,13 +53,12 @@ export default function RepoCardContainer({
               `Showing top ${Math.min(
                 totalResults,
                 perPage * totalPages
-              )} repositories (as per GitHub REST API limitations)`}
+              )} repositories`}
           </Heading>
           <Grid
             as={"ul"}
             w={"full"}
             gridTemplateColumns={{
-              base: "minmax(0, 1fr)",
               md: "repeat(2, minmax(300px, 1fr))",
               xl: "repeat(3, minmax(300px, 1fr))",
             }}
@@ -101,8 +100,9 @@ export default function RepoCardContainer({
                       <ChevronLeft />
                     </IconButton>
                   </Pagination.PrevTrigger>
-
+                  <Pagination.PageText hideFrom={"md"} />
                   <Pagination.Items
+                    hideBelow={"md"}
                     render={(page) => (
                       <IconButton
                         key={page.value}
@@ -124,7 +124,7 @@ export default function RepoCardContainer({
           )}
         </Tabs.Content>
         <Tabs.Content value="favorite">
-          <Box maxH={{ base: "60vh", md: "70vh" }} overflowY="auto" pr={"2"}>
+          <Box maxH={{ base: "60vh", md: "80vh" }} overflowY="auto" px={"2"}>
             {" "}
             <Heading
               as="h2"
