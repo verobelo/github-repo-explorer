@@ -11,6 +11,7 @@ import NoReposMessage from "./components/NoReposMessage";
 import useRepoSearch from "./hooks/useRepoSearch";
 import { useRef } from "react";
 import useLocalStorage from "./hooks/useLocalStorage";
+import { Toaster } from "./components/ui/toaster";
 
 function App() {
   const {
@@ -71,55 +72,58 @@ function App() {
   }
 
   return (
-    <Container
-      maxW={"3xl"}
-      p={"0"}
-      minH={"100dvh"}
-      display={"flex"}
-      flexDirection={"column"}>
-      <VStack p={"4"} gap={"6"} align={{ base: "stretch", md: "center" }}>
-        <Header />
-        <Box as="main">
-          <VStack gap="6" align="stretch" mt={{ base: 2, md: 4 }}>
-            <Searchbar
-              ref={inputRef}
-              query={query}
-              setQuery={setQuery}
-              onSearch={handleSearch}
-              isLoading={isLoading}
-              isRandomLoading={isRandomLoading}
-              selectedLanguage={selectedLanguage}
-              setSelectedLanguage={setSelectedLanguage}
-              selectedFilter={selectedFilter}
-              setSelectedFilter={setSelectedFilter}
-              randomRepo={fetchRandomRepo}
-              handleClear={handleClear}
-              handleClearSearch={handleClearSearch}
-            />
-            {isLoading && <Loader query={query} />}
-            {error && <ErrorMessage message={error} />}
-            {!isLoading && !error && (
-              <RepoCardContainer
-                repos={repos}
-                page={page}
-                goToPage={goToPage}
-                perPage={perPage}
-                totalPages={totalPages}
-                totalResults={totalResults}
-                randomRepoId={randomRepoId}
-                handleToggleFavorite={toggleFavorite}
-                favoriteRepos={favoriteRepos}
-                setFavoriteRepos={setFavoriteRepos}
+    <>
+      <Toaster />
+      <Container
+        maxW={"3xl"}
+        p={"0"}
+        minH={"100dvh"}
+        display={"flex"}
+        flexDirection={"column"}>
+        <VStack p={"4"} gap={"6"} align={{ base: "stretch", md: "center" }}>
+          <Header />
+          <Box as="main">
+            <VStack gap="6" align="stretch" mt={{ base: 2, md: 4 }}>
+              <Searchbar
+                ref={inputRef}
+                query={query}
+                setQuery={setQuery}
+                onSearch={handleSearch}
+                isLoading={isLoading}
+                isRandomLoading={isRandomLoading}
+                selectedLanguage={selectedLanguage}
+                setSelectedLanguage={setSelectedLanguage}
+                selectedFilter={selectedFilter}
+                setSelectedFilter={setSelectedFilter}
+                randomRepo={fetchRandomRepo}
+                handleClear={handleClear}
+                handleClearSearch={handleClearSearch}
               />
-            )}
-            {hasSearched && !isLoading && repos.length === 0 && (
-              <NoReposMessage query={query} />
-            )}
-          </VStack>
-        </Box>
-      </VStack>
-      <Footer />
-    </Container>
+              {isLoading && <Loader query={query} />}
+              {error && <ErrorMessage message={error} />}
+              {!isLoading && !error && (
+                <RepoCardContainer
+                  repos={repos}
+                  page={page}
+                  goToPage={goToPage}
+                  perPage={perPage}
+                  totalPages={totalPages}
+                  totalResults={totalResults}
+                  randomRepoId={randomRepoId}
+                  handleToggleFavorite={toggleFavorite}
+                  favoriteRepos={favoriteRepos}
+                  setFavoriteRepos={setFavoriteRepos}
+                />
+              )}
+              {hasSearched && !isLoading && repos.length === 0 && (
+                <NoReposMessage query={query} />
+              )}
+            </VStack>
+          </Box>
+        </VStack>
+        <Footer />
+      </Container>
+    </>
   );
 }
 
