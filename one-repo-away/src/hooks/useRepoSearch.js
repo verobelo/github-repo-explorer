@@ -61,7 +61,6 @@ export default function useRepoSearch() {
   const fetchRandomRepo = async () => {
     setIsRandomLoading(true);
     setError("");
-    setHasSearched(true);
 
     const randomQuery = "stars:>5000";
     const randomPage = Math.floor(Math.random() * 10) + 1;
