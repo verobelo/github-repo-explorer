@@ -6,6 +6,7 @@ import { Text } from "@chakra-ui/react/typography";
 import { Dices, GitFork, Heart, HeartPlus, Star } from "lucide-react";
 import { IconButton, ButtonGroup } from "@chakra-ui/react/button";
 import { Badge } from "@chakra-ui/react/badge";
+import { toaster } from "./ui/toaster";
 
 export default function RepoCard({
   repo,
@@ -115,7 +116,15 @@ export default function RepoCard({
           <IconButton
             bg={{ _light: "white", _dark: "transparent" }}
             aria-label="Add to favorites"
-            onClick={() => onToggleFavorite(repo)}>
+            onClick={() => {
+              onToggleFavorite(repo);
+              toaster.create({
+                description: isFavorite
+                  ? "Removed from Favorites"
+                  : "Added to Favorites",
+                type: isFavorite ? "error" : "success",
+              });
+            }}>
             {!isFavorite ? (
               <Icon color={"#16a34a"} size={{ base: "lg", xl: "xl" }}>
                 <HeartPlus />
