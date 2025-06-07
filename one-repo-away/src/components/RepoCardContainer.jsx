@@ -1,11 +1,13 @@
 import { Grid, GridItem } from "@chakra-ui/react/grid";
 import RepoCard from "./RepoCard";
-import { IconButton, ButtonGroup, Button } from "@chakra-ui/react/button";
+import { IconButton, ButtonGroup } from "@chakra-ui/react/button";
 import { Pagination } from "@chakra-ui/react/pagination";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, BrushCleaning } from "lucide-react";
 import { Box } from "@chakra-ui/react/box";
 import { Heading } from "@chakra-ui/react/typography";
 import { Tabs } from "@chakra-ui/react/tabs";
+import { Flex } from "@chakra-ui/react/flex";
+import { Tooltip } from "./ui/tooltip";
 
 export default function RepoCardContainer({
   repos,
@@ -17,9 +19,8 @@ export default function RepoCardContainer({
   randomRepoId,
   handleToggleFavorite,
   favoriteRepos,
+  setFavoriteRepos,
 }) {
-  console.log("handleToggleFavorite exists?", typeof handleToggleFavorite);
-
   return (
     <Box
       bg={{ base: "gray.50", _dark: "gray.800" }}
@@ -31,7 +32,7 @@ export default function RepoCardContainer({
       <Tabs.Root defaultValue="results">
         <Tabs.List>
           <Tabs.Trigger value="results">Search Results</Tabs.Trigger>
-          <Tabs.Trigger value="favorite">Favorite</Tabs.Trigger>
+          <Tabs.Trigger value="favorite">Favorite Repos</Tabs.Trigger>
         </Tabs.List>
         <Tabs.Content value="results">
           <Heading
@@ -125,20 +126,38 @@ export default function RepoCardContainer({
         </Tabs.Content>
         <Tabs.Content value="favorite">
           <Box maxH={{ base: "60vh", md: "80vh" }} overflowY="auto" px={"2"}>
-            {" "}
-            <Heading
-              as="h2"
-              fontSize={{ base: "sm", md: "md", xl: "lg" }}
-              pb={"1"}
-              color={{ _light: "gray.600", _dark: "gray.400" }}
-              textAlign={"center"}>
-              Your Favorite Repositories
-            </Heading>
+            <Flex align={"center"} justify={"center"} gap={"3"}>
+              <Heading
+                as="h2"
+                fontSize={{ base: "sm", md: "md", xl: "lg" }}
+                pb={"1"}
+                color={{ _light: "gray.600", _dark: "gray.400" }}
+                textAlign={"center"}>
+                Your Favorite Repositories
+              </Heading>
+
+              {favoriteRepos.length > 0 && (
+                <Tooltip
+                  content="Clear all favorites"
+                  openDelay={200}
+                  closeDelay={100}>
+                  <IconButton
+                    variant={"ghost"}
+                    onClick={() => setFavoriteRepos([])}
+                    type="button"
+                    aria-label="Clear favorites"
+                    size={{ base: "md", md: "lg" }}
+                    color={{ _light: "gray.600", _dark: "gray.400" }}>
+                    <BrushCleaning />
+                  </IconButton>
+                </Tooltip>
+              )}
+            </Flex>
+
             <Grid
               as={"ul"}
               w={"full"}
               gridTemplateColumns={{
-                base: "minmax(0, 1fr)",
                 md: "repeat(2, minmax(300px, 1fr))",
                 xl: "repeat(3, minmax(300px, 1fr))",
               }}
