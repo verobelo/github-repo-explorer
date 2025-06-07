@@ -109,6 +109,7 @@ function App() {
                 randomRepoId={randomRepoId}
                 handleToggleFavorite={toggleFavorite}
                 favoriteRepos={favoriteRepos}
+                setFavoriteRepos={setFavoriteRepos}
               />
             )}
             {hasSearched && !isLoading && repos.length === 0 && (
