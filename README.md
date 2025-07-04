@@ -2,7 +2,7 @@
 
 A lightweight, responsive React app that allows users to search, filter, and explore GitHub repositories by keyword, language, forks, stars, or last update. 
 
-**[LIVE VERSION](https://one-repo-away.vercel.app/)** 
+**🔗 [LIVE VERSION](https://one-repo-away.vercel.app/)** 
 
 
 **🛠️ Built with**
