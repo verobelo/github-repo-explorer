@@ -1,4 +1,4 @@
-**_GITHUB REPOSITORIES EXPLORER_**
+**🌐 _GITHUB REPOSITORIES EXPLORER_**
 
 A lightweight, responsive React app that allows users to search, filter, and explore GitHub repositories by keyword, language, forks, stars, or last update. 
 
