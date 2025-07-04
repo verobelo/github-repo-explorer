@@ -11,7 +11,7 @@ A lightweight, responsive React app that allows users to search, filter, and exp
 - Vite
 - Chakra UI v3
 
-**Bonus**
+**✨ Bonus**
 ---
 
 - Toggleable Light / Dark mode
