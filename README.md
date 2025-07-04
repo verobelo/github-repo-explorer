@@ -5,7 +5,7 @@ A lightweight, responsive React app that allows users to search, filter, and exp
 **[LIVE VERSION](https://one-repo-away.vercel.app/)** 
 
 
-**Built with**
+**🛠️ Built with**
 ---
 - React (with custom hooks)
 - Vite
