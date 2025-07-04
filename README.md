@@ -19,7 +19,7 @@ A lightweight, responsive React app that allows users to search, filter, and exp
 - "Surprise Me" button — discover a random trending repository
 - Clean, minimal UI for better user experience
 
-**Key Learnings**
+**👓 Key Learnings**
 ---
 
 This project helped me reinforce:
